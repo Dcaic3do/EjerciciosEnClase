@@ -18,8 +18,8 @@ public class ruletaRusa {
         for (int i=0;i<6;i++){
             tambor.add(i);
         }
-        this.posicionBala = aleatorio.nextInt((this.tambor.size() + 1));
-        this.posicionActual = aleatorio.nextInt((this.tambor.size() + 1));
+        setPosicionBala();
+        setPosicionActual();
     }
 
     public ruletaRusa(List<Integer> tambor, int cantidadJugadores, int bala, int posicionActual, Random aleatorio) {
@@ -37,6 +37,18 @@ public class ruletaRusa {
                 ", posicionBala=" + posicionBala +
                 ", posicionActual=" + posicionActual +
                 '}';
+    }
+
+    public void setPosicionBala() {
+        this.posicionBala = aleatorio.nextInt(this.tambor.size() + 1);
+    }
+
+    public void setPosicionActual() {
+        this.posicionActual = aleatorio.nextInt(this.tambor.size() + 1);;
+    }
+
+    public void setDisparo(boolean disparo) {
+        this.disparo = disparo;
     }
 
     public boolean disparo() {

@@ -12,21 +12,34 @@ public class Main {
         ruletaRusa ruleta = new ruletaRusa();
         Scanner teclado = new Scanner(System.in);
         List<String> jugadores = new ArrayList<>();
-        int cantidadJugadores,opciones;
+        int cantidadJugadores,opciones,entrar;
         String disparar,jugador;
-        boolean salir = false;
+        boolean salir;
 
-
-        System.out.print("Ingrese el número de jugadores: ");
-        cantidadJugadores = teclado.nextInt();
+        System.out.println("Bienvenido al juego ruleta rusa");
+        System.out.println("1. Iniciar el juego");
+        System.out.println("2. Salir");
+        System.out.println("Digite la opción deseada: ");
+        entrar = teclado.nextInt();
         teclado.nextLine();
 
-        for (int i=0;i<cantidadJugadores;i++){
-            System.out.print("Ingrese el nombre del jugador " + (i+1) + ": ");
-            jugador = teclado.nextLine();
-            jugadores.add(jugador);
+        if (entrar == 1) {
+            salir = false;
+        }else{
+            salir = true;
         }
+
         while (salir == false){
+            System.out.print("Ingrese el número de jugadores: ");
+            cantidadJugadores = teclado.nextInt();
+            teclado.nextLine();
+
+            for (int i=0;i<cantidadJugadores;i++){
+                System.out.print("Ingrese el nombre del jugador " + (i+1) + ": ");
+                jugador = teclado.nextLine();
+                jugadores.add(jugador);
+            }
+
             while (ruleta.disparo() == false){
                 for (int i=0;i<jugadores.size();i++){
                     System.out.print("Jugador " + (i+1) + " " + jugadores.get(i) + " presione enter para disparar");
@@ -40,15 +53,21 @@ public class Main {
                     }
                 }
             }
+
             System.out.println("Quiere reiniciar el juego");
             System.out.println("1. Si");
             System.out.println("2. No");
             System.out.println("Digite la opción deseada: ");
             opciones = teclado.nextInt();
             teclado.nextLine();
-            if (opciones == 1) {
+
+            if (opciones == 2) {
                 salir = true;
                 System.out.println("Muchas gracias por jugar");
+            }else{
+                ruleta.setDisparo(false);
+                ruleta.setPosicionActual();
+                ruleta.setPosicionBala();
             }
         }
     }
